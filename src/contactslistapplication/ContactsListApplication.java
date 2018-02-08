@@ -3,20 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package contactmanager;
+package contactslistapplication;
 
 /**                     
  *
  * @author justin
  */
-public class ContactManager {
+public class ContactsListApplication {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        ContactApp app = new ContactApp();
+        ContactManager app = new ContactManager();
         
         MainForm mf = new MainForm(app);
         mf.setVisible(true);

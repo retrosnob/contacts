@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package contactmanager;
+package contactslistapplication;
 
 import java.util.Arrays;
 
@@ -11,7 +11,7 @@ import java.util.Arrays;
  *
  * @author justin
  */
-public class ContactApp {
+public class ContactManager {
 
     Contact[] contacts = new Contact[100];
     int contactCount = 0;

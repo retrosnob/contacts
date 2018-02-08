@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package contactmanager;
+package contactslistapplication;
 
 /**
  *
@@ -11,12 +11,12 @@ package contactmanager;
  */
 public class MainForm extends javax.swing.JFrame {
 
-    ContactApp app;
+    ContactManager app;
 
     /**
      * Creates new form MainForm
      */
-    public MainForm(ContactApp app) {
+    public MainForm(ContactManager app) {
         initComponents();
         this.app = app;
     }
