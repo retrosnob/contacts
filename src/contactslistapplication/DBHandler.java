@@ -74,9 +74,48 @@ public class DBHandler {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(2, String.valueOf(id));
         } catch (SQLException e) {
-
+            System.out.println(e.getMessage());
+            e.printStackTrace(System.out);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace(System.out);
         }
         return row;
+    }
+
+    void deleteRow(int id) {
+        String sql = "delete * from Contact where id = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(2, String.valueOf(id));
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace(System.out);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace(System.out);
+        }
+    }
+    
+    String[] getAllRows() {
+        String[] rows = null;
+        String sql = "select * from Contact";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery(sql);
+            String[] firstNames = rs.getArray("FirstName");
+            String[] lastNames = rs.getArray("LastName");
+            for (int i = 0; i < firstNames.length; i++) {
+                rows[i] = lastNames[i] + ", " + firstNames[i];
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace(System.out);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace(System.out);
+        }
+        return rows;
     }
 
 }

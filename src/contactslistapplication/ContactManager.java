@@ -13,7 +13,8 @@ import java.util.Arrays;
  */
 public class ContactManager {
 
-    Contact[] contacts = new Contact[100];
+    // Contact[] contacts = new Contact[100];
+    String[] contactListStrings = null;
     int contactCount = 0;
     DBHandler dbHandler = new DBHandler();
 
@@ -30,17 +31,12 @@ public class ContactManager {
 
         contacts[contactCount++] = contact;
         
-        dbHandler.insertRow(firstName, lastName, phone, email);
+        int id = dbHandler.insertRow(firstName, lastName, phone, email);
+        contact.setId(id);
     }
 
     String[] getContactsList() {
-        String[] stringArray = new String[contactCount];
-        for (int i = 0; i < contactCount; i++) {
-            if (contacts[i] != null) {
-                stringArray[i] = contacts[i].toString();
-            }
-        }
-        return stringArray;
+       return contactListStrings;
     }
 
     String[] getContactFields(int selected) {
@@ -60,11 +56,14 @@ public class ContactManager {
 
     boolean deleteContact(int index) {
         if (index > -1 && index < contactCount) {
-            for (int i = index; i < contactCount - 1; i++) {
-                contacts[i] = contacts[i + 1];
-
-            }
-            contactCount = contactCount - 1;
+            Contact c = contacts[index];
+            dbHandler.deleteRow(c.getId());
+            refreshContacts();
+//            for (int i = index; i < contactCount - 1; i++) {
+//                contacts[i] = contacts[i + 1];
+//
+//            }
+//            contactCount = contactCount - 1;
             return true;
         } else {
             return false;
@@ -82,6 +81,11 @@ public class ContactManager {
         contacts[index].setPhone(phone);
         contacts[index].setEmail(email);
         return true;
+    }
+    
+    void refreshContacts() {
+        // Read the contacts list off the db and into an array
+        contactListStrings = dbHandler.getAllRows();
     }
 
 }
