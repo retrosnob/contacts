@@ -47,10 +47,14 @@ public class DBHandler {
             ps.setString(4, phone);
             ps.executeQuery();
             ResultSet rs = ps.getGeneratedKeys();
+            System.out.println(rs.getInt(0));
+            System.out.println(rs.getInt(0));
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            System.out.println(e.getStackTrace();
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            System.out.println(e.getStackTrace();
         }
         return true;
 
